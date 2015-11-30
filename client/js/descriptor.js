@@ -9,8 +9,10 @@ function Descriptor() {
 Descriptor.prototype.handleInput = function(e) {
     e.which = e.which || e.keyCode;
     if (e.which == 13) {
-        this.handleOutput(e.target.value);
-        this.lastCommand = e.target.value || this.lastCommand; // Don't overwrite last command with empty string
+        // See /js/monkey-patching.js for String.prototype.stripTags implementation
+        var input = e.target.value.stripTags();
+        this.handleOutput(input);
+        this.lastCommand = input || this.lastCommand; // Don't overwrite last command with empty string
         e.target.value = "";
     }
     
