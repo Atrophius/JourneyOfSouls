@@ -1,0 +1,50 @@
+* {
+    font-family: "Courier New"; /* Every single text element should be monospaced */
+}
+
+body {
+    background-color: #000;
+    color: #FFF;
+    font-size: 14px;
+}
+
+pre {
+    display: inline;
+}
+
+#screen-container {
+    overflow-y: auto;
+}
+
+#main-screen {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    width: 632px; /* For that terminal width effect? */
+    word-wrap: break-word;
+}
+
+.console-line {
+    
+}
+
+.warning {
+    color: #F00;
+    font-weight: bold;
+}
+
+.command-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    border-top: 1px solid gray;
+}
+
+#command-box {
+    background-color: #000;
+    color: #FFF;
+    border: 0;
+    width: 95%;
+    outline: none;
+}

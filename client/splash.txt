@@ -1,0 +1,25 @@
+                   _                                            __ 
+                  | |                                          / _|
+                  | | ___  _   _ _ __ _ __   ___ _   _    ___ | |_ 
+              _   | |/ _ \| | | | '__| '_ \ / _ \ | | |  / _ \|  _|
+             | |__| | (_) | |_| | |  | | | |  __/ |_| | | (_) | |  
+              \____/ \___/ \__,_|_|  |_| |_|\___|\__, |  \___/|_|  
+                                                  __/ |            
+                                                 |___/             
+                             _____             _     
+                            / ____|           | |    
+                           | (___   ___  _   _| |___ 
+                            \___ \ / _ \| | | | / __|
+                            ____) | (_) | |_| | \__ \
+                           |_____/ \___/ \__,_|_|___/
+
+                     Copyright (c) 2010 - 2016, Jeremy Privett
+                               All rights reserved.
+
+This is a proof of concept build for an in-browser version of the JoS MUD. This
+concept implementation uses procedural world generation to create a dungeon for
+you to explore entirely client-side.
+
+If you experience any problems with this proof of concept, please open a ticket
+at https://github.com/Atrophius/JourneyOfSouls with details on the problem that
+you encountered.
