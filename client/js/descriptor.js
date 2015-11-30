@@ -92,5 +92,18 @@ Descriptor.prototype.clearScreen = function() {
 };
 
 Descriptor.prototype.addCommandProcessor = function(processor) {
-    this.commandProcessors.push(processor);
+    if (this.commandProcessors.indexOf(processor) === -1) {
+        this.commandProcessors.push(processor);
+    }
+};
+
+Descriptor.prototype.removeCommandProcessor = function(processor) {
+    this.commandProcessors = this.commandProcessors.filter(function(p) {
+        // I think this should be sufficient?
+        if (p == processor) {
+            return false;
+        }
+        
+        return true;
+    });
 };
