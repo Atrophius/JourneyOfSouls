@@ -1,4 +1,5 @@
 // Pulled from Stack Overflow, of course.
+// http://stackoverflow.com/a/430240
 String.prototype.stripTags = function() {
     var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
     var tagOrComment = new RegExp(
