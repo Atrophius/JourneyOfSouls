@@ -13,7 +13,7 @@ Descriptor.prototype.handleInput = function(e) {
     if (e.which == 13) {
         // See /js/monkey-patching.js for String.prototype.stripTags implementation
         var input = e.target.value.stripTags();
-        this.handleOutput("> " + input);
+        this.handleOutput("> " + input, [], false);
         this.lastCommand = input || this.lastCommand; // Don't overwrite last command with empty string
         e.target.value = "";
         
@@ -26,13 +26,21 @@ Descriptor.prototype.handleInput = function(e) {
     }
 };
 
-Descriptor.prototype.handleCommand = function(command) {
+Descriptor.prototype.handleCommand = function(input) {
     // Go through the processors in reverse.
     var processors = this.commandProcessors.reverse();
     var done = false;
     
+    var split = input.split(" ");
+    var command = split.shift();
+    var args = "";
+    
+    if (split.length > 0) {
+        args = split.join(" ");
+    }
+    
     for (var i = 0; i < processors.length; i++) {
-        if (processors[i].processCommand(this, command)) {
+        if (processors[i].processCommand(this, command, args)) {
             done = true;
             break;
         }
@@ -43,11 +51,14 @@ Descriptor.prototype.handleCommand = function(command) {
     }
 };
 
-Descriptor.prototype.handleOutput = function(text, additionalClasses) {
+Descriptor.prototype.handleOutput = function(text, additionalClasses, blankLine) {
     var div = document.createElement('div');
     var screenContainer = document.getElementById('screen-container');
     var mainScreen = document.getElementById('main-screen');
     additionalClasses = additionalClasses || [];
+    if (typeof blankLine == "undefined") {
+        blankLine = true;
+    }
     
     div.className = "console-line";
     
@@ -59,6 +70,14 @@ Descriptor.prototype.handleOutput = function(text, additionalClasses) {
     div.innerHTML = text || "&nbsp;";
     
     mainScreen.appendChild(div);
+    
+    if (blankLine) {
+        var emptyDiv = document.createElement('div');
+        emptyDiv.className = "console-line";
+        emptyDiv.innerHTML = "&nbsp;";
+        mainScreen.appendChild(emptyDiv);
+    }
+    
     screenContainer.scrollTop = screenContainer.scrollHeight;
 };
 

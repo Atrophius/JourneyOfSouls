@@ -20,7 +20,8 @@ pre {
     display: flex;
     flex-direction: column;
     height: 95%;
-    width: 632px; /* For that terminal width effect? */
+    width: 680px; /* For that terminal width effect? */
+    min-width: 680px;
     word-wrap: break-word;
 }
 

@@ -1,5 +1,5 @@
 /* global CommandProcessor */
-var MovementCommands = new CommandProcessor();
+var MovementCommands = new CommandProcessor("MovementCommands", "Movement Commands");
 
 MovementCommands.addCommand("north", function(d) {
     // Move character north

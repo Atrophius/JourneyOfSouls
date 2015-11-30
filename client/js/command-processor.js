@@ -1,10 +1,12 @@
-function CommandProcessor() {
+function CommandProcessor(processorName, processorDesc) {
+    this.processorName = processorName;
+    this.processorDesc = processorDesc;
     this.commands = {};
     this.aliases = {};
 }
 
-CommandProcessor.prototype.addCommand = function(name, action) {
-    this.commands[name] = action;
+CommandProcessor.prototype.addCommand = function(name, desc, action) {
+    this.commands[name] = {description: desc, action: action};
 };
 
 CommandProcessor.prototype.removeCommand = function(name) {
@@ -20,9 +22,9 @@ CommandProcessor.prototype.removeCommand = function(name) {
     }
 };
 
-CommandProcessor.prototype.processCommand = function(d, name) {
+CommandProcessor.prototype.processCommand = function(d, name, args) {
     if (this.commands[name]) {
-        this.commands[name](d);
+        this.commands[name].action(d, args);
         return true;
     }
     
@@ -40,4 +42,14 @@ CommandProcessor.prototype.aliasCommand = function(name, alias) {
             this.aliases[name] = [alias];
         }
     }
+};
+
+CommandProcessor.prototype.listCommands = function(d) {
+    var output = this.processorDesc + ":\n";
+    
+    for ( var command in this.commands ) {
+        output += "  " + command + " - " + this.commands[command].description + "\n";
+    }
+    
+    d.handleOutput("<pre>" + output + "</pre>");
 };
